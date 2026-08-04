@@ -1,33 +1,18 @@
 class Solution {
     public String solution(String s, String skip, int index) {
         String answer = "";
-        for(int i=0;i<s.length();i++){
-            int j=0;
-           
-               char tmp = s.charAt(i);
-                int stack = 0;
-            int k=0;
-                while(k<index){
-                    tmp+=1;
-                    if(tmp>'z') tmp='a';
-                    if(isIn(tmp,skip)){
-                        stack++;
-                        continue;
-                    }
-                    k++;
+        for(char letter : s.toCharArray()){
+            char tmp = letter;
+            int idx = 0;
+            while(idx<index){
+                tmp =tmp=='z'?'a':(char)(tmp+1);
+                if(!skip.contains(tmp+"")){
+                    idx++;
                 }
-                
-                answer+=tmp+"";
-                j++;
-            
+            }
+            answer+=tmp+"";
         }
+        
         return answer;
     }
-    public boolean isIn(char a,String b){
-        for(int i=0;i<b.length();i++){
-            if(a==b.charAt(i)) return true;
-        }
-        return false;
-    }
-    
 }
